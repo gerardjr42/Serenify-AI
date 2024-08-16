@@ -41,7 +41,7 @@ export async function POST(req) {
           const content = chunk.choices[0].delta?.content;
           if (content) {
             const text = encoder.encode(content);
-            // Add encoded text to stream's que
+            // Add encoded text to stream's queue
             controller.enqueue(text);
           }
         }
