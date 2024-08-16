@@ -3,14 +3,13 @@ import { Box, Button, Stack, TextField } from "@mui/material";
 import { useState } from "react";
 
 export default function Home() {
+  const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([
     {
       role: "assistant",
       content: `Hello, I'm Serenify, your AI-powered therapy assistant. I'm here to support you on your mental health journey and provide information about our services. How can I help you today?`,
     },
   ]);
-
-  const [message, setMessage] = useState("");
 
   const handleSendMessage = async () => {
     if (!message.trim()) return; // Prevent sending empty messages
@@ -43,10 +42,13 @@ export default function Home() {
 
         // Add proper formatting
         const formattedChunk = chunk
+          // replace all newlines with <br>
           .replace(/\n/g, "<br>")
+          // convert markdown to html
           .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
 
         assistantMessage.content += formattedChunk;
+        // real-time updates of the assistant's response as it's being received, without affecting the other messages in the conversation history.
         setMessages((prevMessages) =>
           prevMessages.map((msg, index) =>
             index === prevMessages.length - 1 ? { ...assistantMessage } : msg
