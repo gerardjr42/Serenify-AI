@@ -1,5 +1,4 @@
 "use client";
-import { Box, Button, Stack, TextField } from "@mui/material";
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -61,79 +60,41 @@ export default function ChatComponent() {
   };
 
   return (
-    <>
-      <Box
-        width="100vw"
-        height="100vh"
-        display="flex"
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Box>
-          <h1>Serenify</h1>
-        </Box>
-        <Stack
-          direction="column"
-          spacing={3}
-          width="600px"
-          height="700px"
-          border="1px solid #ccc"
-          p={2}
-        >
-          <Stack
-            direction="column"
-            p={2}
-            spacing={2}
-            flexGrow={1}
-            overflow="auto"
-            maxHeight="100%"
-            // width="100%"
-          >
+    <div className="flex justify-center items-start h-[80vh] bg-gradient-to-b from-purple-800/10 to-purple-900/10 rounded-lg">
+      <div className="w-[500px] h-[80vh] rounded-lg drop-shadow-2xl shadow-white overflow-hidden">
+        <div className="h-full flex flex-col">
+          <div className="flex-1 overflow-y-auto p-4 space-y-4">
             {messages.map((message, index) => (
-              <Box
+              <div
                 key={index}
-                display="flex"
-                justifyContent={
-                  message.role === "assistant" ? "flex-start" : "flex-end"
-                }
-                width="100%"
-                mb={2}
+                className={`flex ${
+                  message.role === "assistant" ? "justify-start" : "justify-end"
+                }`}
               >
-                <Box
-                  bgcolor={
+                <div
+                  className={`max-w-[80%] p-3 rounded-lg ${
                     message.role === "assistant"
-                      ? "primary.main"
-                      : "secondary.main"
-                  }
-                  p={2}
-                  borderRadius={2}
-                  color="white"
-                  maxWidth="80%"
+                      ? "bg-blue-600 text-white"
+                      : "bg-gray-700 text-white"
+                  } shadow-md`}
                 >
                   <ReactMarkdown
                     remarkPlugins={[remarkGfm]}
                     components={{
                       h1: ({ node, ...props }) => (
-                        <h1
-                          className="mt-4 mb-2 text-xl font-bold"
-                          {...props}
-                        />
+                        <h1 className="text-xl font-bold mb-2" {...props} />
                       ),
                       h2: ({ node, ...props }) => (
-                        <h2
-                          className="mt-4 mb-2 text-lg font-semibold"
-                          {...props}
-                        />
+                        <h2 className="text-lg font-semibold mb-2" {...props} />
                       ),
                       p: ({ node, ...props }) => (
                         <p className="mb-2" {...props} />
                       ),
                       ul: ({ node, ...props }) => (
-                        <ul className="mb-2 ml-6 list-disc" {...props} />
+                        <ul className="list-disc pl-4 mb-2" {...props} />
                       ),
                       ol: ({ node, ...props }) => (
-                        <ol className="mb-2 ml-6 list-decimal" {...props} />
+                        <ol className="list-decimal pl-4 mb-2" {...props} />
                       ),
                       li: ({ node, ...props }) => (
                         <li className="mb-1" {...props} />
@@ -143,29 +104,45 @@ export default function ChatComponent() {
                   >
                     {message.content}
                   </ReactMarkdown>
-                </Box>
-              </Box>
+                </div>
+              </div>
             ))}
-          </Stack>
-          <Stack direction="row" spacing={2}>
-            <TextField
-              label="message"
-              fullWidth
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              onKeyDown={(e) =>
-                e.key === "Enter" && !e.shiftKey && handleSendMessage()
-              }
-              InputProps={{
-                style: { color: "white" },
-              }}
-            />
-            <Button variant="contained" onClick={handleSendMessage}>
-              Send
-            </Button>
-          </Stack>
-        </Stack>
-      </Box>
-    </>
+          </div>
+          <div className="p-4 bg-gray-800">
+            <div className="flex items-center bg-gray-700 rounded-lg">
+              <input
+                type="text"
+                placeholder="Type your message..."
+                className="flex-1 bg-transparent text-white p-3 focus:outline-none"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                onKeyDown={(e) =>
+                  e.key === "Enter" && !e.shiftKey && handleSendMessage()
+                }
+              />
+              <button
+                onClick={handleSendMessage}
+                className="p-3 text-blue-400 hover:text-blue-300 focus:outline-none"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

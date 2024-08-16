@@ -10,13 +10,13 @@ export default function Home() {
             <h2 className="text-purple-700 text-6xl font-bold mb-2 font-serif">
               Serenify.
             </h2>
-            <h1 className="text-white text-4xl font-bold mb-6 leading-tight">
-              <p>You&apos;ve never seen</p>
-              <p>This AI companion.</p>
+            <h1 className="text-white text-5xl font-bold mb-6 leading-tight">
+              <p>Your personal</p>
+              <p>AI therapist</p>
             </h1>
             <p className="text-gray-400 text-xl mb-8 max-w-md">
-              Your AI-powered companion for mental wellness. Experience a new
-              level of support and guidance.
+              24/7 support, personalized guidance, and a judgment-free space for
+              your mental wellness journey.
             </p>
           </div>
         </div>
