@@ -7,12 +7,30 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      listStyleType: {
+        "lower-alpha": "lower-alpha",
+        "lower-roman": "lower-roman",
+        circle: "circle",
+        square: "square",
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addComponents, theme }) {
+      addComponents({
+        ".markdown-content ol ol": {
+          listStyleType: theme("listStyleType.lower-alpha"),
+        },
+        ".markdown-content ol ol ol": {
+          listStyleType: theme("listStyleType.lower-roman"),
+        },
+        ".markdown-content ul ul": {
+          listStyleType: theme("listStyleType.circle"),
+        },
+        ".markdown-content ul ul ul": {
+          listStyleType: theme("listStyleType.square"),
+        },
+      });
+    },
+  ],
 };

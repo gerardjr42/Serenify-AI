@@ -1,6 +1,8 @@
 "use client";
 import { Box, Button, Stack, TextField } from "@mui/material";
 import { useState } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 export default function Home() {
   const [message, setMessage] = useState("");
@@ -40,14 +42,12 @@ export default function Home() {
         if (done) break;
         const chunk = decoder.decode(value);
 
-        // Add proper formatting
-        const formattedChunk = chunk
-          // replace all newlines with <br>
-          .replace(/\n/g, "<br>")
-          // convert markdown to html
-          .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+        // // Add proper formatting
+        // const formattedChunk = chunk
+        //   // replace all newlines with <br>
+        //   .replace("<br>", "\n\n");
 
-        assistantMessage.content += formattedChunk;
+        assistantMessage.content += chunk;
         // real-time updates of the assistant's response as it's being received, without affecting the other messages in the conversation history.
         setMessages((prevMessages) =>
           prevMessages.map((msg, index) =>
@@ -82,10 +82,12 @@ export default function Home() {
       >
         <Stack
           direction="column"
+          p={2}
           spacing={2}
           flexGrow={1}
           overflow="auto"
           maxHeight="100%"
+          // width="100%"
         >
           {messages.map((message, index) => (
             <Box
@@ -94,6 +96,8 @@ export default function Home() {
               justifyContent={
                 message.role === "assistant" ? "flex-start" : "flex-end"
               }
+              width="100%"
+              mb={2}
             >
               <Box
                 bgcolor={
@@ -104,8 +108,38 @@ export default function Home() {
                 p={2}
                 borderRadius={2}
                 color="white"
-                dangerouslySetInnerHTML={{ __html: message.content }}
-              />
+                maxWidth="80%"
+              >
+                <ReactMarkdown
+                  remarkPlugins={[remarkGfm]}
+                  components={{
+                    h1: ({ node, ...props }) => (
+                      <h1 className="mt-4 mb-2 text-xl font-bold" {...props} />
+                    ),
+                    h2: ({ node, ...props }) => (
+                      <h2
+                        className="mt-4 mb-2 text-lg font-semibold"
+                        {...props}
+                      />
+                    ),
+                    p: ({ node, ...props }) => (
+                      <p className="mb-2" {...props} />
+                    ),
+                    ul: ({ node, ...props }) => (
+                      <ul className="mb-2 ml-6 list-disc" {...props} />
+                    ),
+                    ol: ({ node, ...props }) => (
+                      <ol className="mb-2 ml-6 list-decimal" {...props} />
+                    ),
+                    li: ({ node, ...props }) => (
+                      <li className="mb-1" {...props} />
+                    ),
+                  }}
+                  className="markdown-content"
+                >
+                  {message.content}
+                </ReactMarkdown>
+              </Box>
             </Box>
           ))}
         </Stack>
