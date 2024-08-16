@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function NavBar() {
   return (
-    <nav className="p-4 bg-gray-950 bg-opacity-60 flex justify-between items-center">
+    <nav className="p-6 bg-gray-950 bg-opacity-60 flex justify-between items-center w-[80%] mx-auto">
       <p className="text-white text-2xl font-bold">Serenify</p>
       <ul className="flex items-center">
         <li className="mr-4 ">

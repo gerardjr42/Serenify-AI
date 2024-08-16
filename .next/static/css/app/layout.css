@@ -578,6 +578,10 @@ video {
 .markdown-content ul ul ul {
   list-style-type: square;
 }
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
 .mb-1 {
   margin-bottom: 0.25rem;
 }
@@ -596,6 +600,9 @@ video {
 .mr-10 {
   margin-right: 2.5rem;
 }
+.ml-12 {
+  margin-left: 3rem;
+}
 .flex {
   display: flex;
 }
@@ -607,6 +614,24 @@ video {
 }
 .w-full {
   width: 100%;
+}
+.w-5\/6 {
+  width: 83.333333%;
+}
+.w-\[50\%\] {
+  width: 50%;
+}
+.w-\[80\%\] {
+  width: 80%;
+}
+.w-\[70\%\] {
+  width: 70%;
+}
+.w-\[75\%\] {
+  width: 75%;
+}
+.w-3\/4 {
+  width: 75%;
 }
 .list-decimal {
   list-style-type: decimal;
@@ -668,6 +693,9 @@ video {
 }
 .p-12 {
   padding: 3rem;
+}
+.p-5 {
+  padding: 1.25rem;
 }
 .px-2 {
   padding-left: 0.5rem;
