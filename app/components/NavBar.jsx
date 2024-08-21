@@ -1,3 +1,4 @@
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 
 export default function NavBar() {
@@ -6,25 +7,25 @@ export default function NavBar() {
       <Link href="/" className="text-white text-3xl font-bold font-serif ml-2">
         Serenify
       </Link>
-      <ul className="flex items-center">
-        <li className="mr-4 ">
-          <Link href="/about" className="text-white hover:text-gray-200">
-            About
-          </Link>
-        </li>
-        <li className="mr-4">
-          <Link href="/chat" className="text-white hover:text-gray-200">
-            Chat
-          </Link>
-        </li>
-        <li className="mr-4">
-          <Link href="/login" className="text-white hover:text-gray-200">
-            <button className="text-white  hover:bg-white hover:text-black px-2 py-1 rounded-md">
-              Login/Logout
-            </button>
-          </Link>
-        </li>
-      </ul>
+      <div className="flex items-center space-x-4">
+        <Link href="/about" className="text-white hover:text-gray-200">
+          About
+        </Link>
+        <Link href="/chat" className="text-white hover:text-gray-200">
+          Chat
+        </Link>
+        <SignedOut>
+          <SignInButton
+            mode="modal"
+            className="text-white hover:bg-white hover:text-black px-2 py-1 rounded-md"
+          >
+            Sign In
+          </SignInButton>
+        </SignedOut>
+        <SignedIn>
+          <UserButton afterSignOutRedirectUrl="/" />
+        </SignedIn>
+      </div>
     </nav>
   );
 }

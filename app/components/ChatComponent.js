@@ -37,7 +37,7 @@ export default function ChatComponent() {
         setMessages((prevMessages) => [...prevMessages, assistantMessage]);
 
         function readChunk() {
-          return reader.read().then(({ done, value }) => {
+          reader.read().then(({ done, value }) => {
             if (done) return;
             const chunk = decoder.decode(value);
             assistantMessage.content += chunk;
@@ -48,11 +48,11 @@ export default function ChatComponent() {
                   : msg
               )
             );
-            return readChunk();
+            readChunk();
           });
         }
 
-        return readChunk();
+        readChunk();
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -60,16 +60,16 @@ export default function ChatComponent() {
   };
 
   return (
-    <div className="flex justify-center items-start h-[80vh] bg-gradient-to-b from-purple-800/10 to-purple-900/10 rounded-lg">
-      <div className="w-[500px] h-[80vh] rounded-lg drop-shadow-2xl shadow-white overflow-hidden">
-        <div className="h-full flex flex-col">
-          <div className="flex-1 overflow-y-auto p-4 space-y-4">
+    <div className="flex justify-center items-start h-full bg-gradient-to-b from-purple-800/10 to-purple-900/10 rounded-lg">
+      <div className="w-[500px] h-full rounded-lg drop-shadow-2xl shadow-white overflow-hidden flex flex-col">
+        <div className="flex-1 overflow-hidden flex flex-col">
+          <div className="flex-1 overflow-y-auto p-4 ">
             {messages.map((message, index) => (
               <div
                 key={index}
                 className={`flex ${
                   message.role === "assistant" ? "justify-start" : "justify-end"
-                }`}
+                } mb-4`}
               >
                 <div
                   className={`max-w-[80%] p-3 rounded-lg ${
@@ -108,38 +108,38 @@ export default function ChatComponent() {
               </div>
             ))}
           </div>
-          <div className="p-4 bg-gray-800">
-            <div className="flex items-center bg-gray-700 rounded-lg">
-              <input
-                type="text"
-                placeholder="Type your message..."
-                className="flex-1 bg-transparent text-white p-3 focus:outline-none"
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                onKeyDown={(e) =>
-                  e.key === "Enter" && !e.shiftKey && handleSendMessage()
-                }
-              />
-              <button
-                onClick={handleSendMessage}
-                className="p-3 text-blue-400 hover:text-blue-300 focus:outline-none"
+        </div>
+        <div className="p-4 bg-gray-800">
+          <div className="flex items-center bg-gray-700 rounded-lg">
+            <input
+              type="text"
+              placeholder="Type your message..."
+              className="flex-1 bg-transparent text-white p-3 focus:outline-none"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              onKeyDown={(e) =>
+                e.key === "Enter" && !e.shiftKey && handleSendMessage()
+              }
+            />
+            <button
+              onClick={handleSendMessage}
+              className="p-3 text-blue-400 hover:text-blue-300 focus:outline-none"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
-                  />
-                </svg>
-              </button>
-            </div>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+                />
+              </svg>
+            </button>
           </div>
         </div>
       </div>

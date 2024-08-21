@@ -5,7 +5,6 @@ export default function Login() {
     <Layout>
       <div className="container mx-auto">
         <h1 className="text-white text-2xl mb-4">Login</h1>
-        {/* Add login form here */}
       </div>
     </Layout>
   );
