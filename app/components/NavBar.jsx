@@ -8,9 +8,6 @@ export default function NavBar() {
         Serenify
       </Link>
       <div className="flex items-center space-x-4">
-        <Link href="/about" className="text-white hover:text-gray-200">
-          About
-        </Link>
         <Link href="/chat" className="text-white hover:text-gray-200">
           Chat
         </Link>

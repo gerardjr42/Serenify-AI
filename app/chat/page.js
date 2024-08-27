@@ -5,8 +5,8 @@ import Layout from "../components/Layout";
 export default function Chat() {
   return (
     <Layout>
-      <div className="w-[90%] h-[80vh] grid grid-cols-[1fr_2fr] mx-auto mt-12">
-        <div className="flex items-center justify-center relative z-10">
+      <div className="w-full grid grid-cols-1 md:grid-cols-[1fr_2fr] mx-auto mt-8">
+        <div className="flex items-center justify-center relative">
           <ChatComponent />
         </div>
         <div className="relative flex items-center justify-center h-full overflow-hidden">

@@ -60,10 +60,10 @@ export default function ChatComponent() {
   };
 
   return (
-    <div className="flex justify-center items-start h-[90%] bg-gradient-to-b from-purple-800/10 to-purple-900/10 rounded-lg">
-      <div className="w-[500px] h-[90%] rounded-lg drop-shadow-2xl shadow-white overflow-hidden flex flex-col">
+    <div className="flex justify-center items-start h-screen bg-gradient-to-b from-purple-800/10 to-purple-900/10 rounded-lg pb-6 md:pb-20">
+      <div className="w-full max-w-[500px] h-[90%] rounded-lg shadow-indigo-500/40 overflow-hidden flex flex-col shadow-md border-indigo-500/40 border-2">
         <div className="flex-1 overflow-hidden flex flex-col">
-          <div className="flex-1 overflow-y-auto p-4 ">
+          <div className="flex-1 overflow-y-auto p-4 max-h-[750px]">
             {messages.map((message, index) => (
               <div
                 key={index}
