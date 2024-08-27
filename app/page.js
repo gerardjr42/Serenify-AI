@@ -8,7 +8,7 @@ export default function Home() {
         <div className="flex items-center justify-center">
           <div className="text-left max-w-xl p-8">
             <h2 className="text-purple-700 text-6xl font-bold mb-2 font-serif">
-              Serenify.
+              Serenify
             </h2>
             <h1 className="text-white text-5xl font-bold mb-6 leading-tight">
               <p>Your personal</p>
